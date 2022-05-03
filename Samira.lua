@@ -82,6 +82,24 @@ local acc_q_slider = acc_sect:slider_int("Q accuracy", acc_config, 0, 5, 1)
 acc_q_slider:set_value(2)
 
 
+local version = 0.02
+local updateUrl = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/Samira.lua" 
+local scriptName = 'Samira.lua'
+
+local function DownloadFile(url, path, fileName)
+    DownloadFileAsync(url, path .. fileName, function() end)
+    while not FileExist(path .. fileName) do end
+end
+
+local function Update()
+    local str = debug.getinfo(2, "S").source:sub(2)
+    local path_str = str:match("(.*/)")
+    if NewVersion > Version then
+        DownloadFile(updateUrl, path_str, scriptName)
+        print("UPDATED?")
+    else
+end
+
 function Vec3_Extend(a,b, dist) 
     local distance = a:dist_to(b) 
     local offset = dist / distance 
