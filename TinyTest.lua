@@ -1,4 +1,4 @@
-VERSION = "1.0.6"
+VERSION = "1.0.7"
 LUA_NAME = "TinyTest.lua"
 REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
 REPO_SCRIPT_PATH = REPO_BASE_URL .. LUA_NAME
