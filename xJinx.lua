@@ -1,6 +1,6 @@
 -- xJinx by Jay and a bit of ampx.
 
-VERSION = "1.0.5"
+VERSION = "1.0.6"
 LUA_NAME = "xJinx.lua"
 REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
 REPO_SCRIPT_PATH = REPO_BASE_URL .. LUA_NAME
@@ -9,7 +9,7 @@ local core = require("xCore")
 core:init()
 
 local function fetch_remote_version_number()
-    local command = "curl -s " .. REPO_SCRIPT_PATH
+    local command = "curl -s -H 'Cache-Control: no-cache, no-store, must-revalidate' " .. REPO_SCRIPT_PATH
     local handle = io.popen(command)
     local content = handle:read("*a")
     handle:close()
