@@ -26,7 +26,7 @@ end
 
 local function replace_current_file_with_latest_version(latest_version_script)
     local resources_path = cheat:get_resource_path()
-    local current_file_path = resources_path:gsub("resources$", "lua/" .. LUA_NAME)
+    local current_file_path = resources_path:gsub("resources$", "lua/" .. Jinx_LUA_NAME)
 
     local file, errorMessage = io.open(current_file_path, "w")
 
