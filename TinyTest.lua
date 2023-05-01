@@ -36,8 +36,12 @@ local function replace_current_file_with_latest_version(latest_version_script)
 end
 
 local remote_version = fetch_remote_version_number()
+-- print both latest_version_script and remote_version
+print("Local version: " .. tostring(VERSION) .. ", Remote version: " .. tostring(remote_version))
 
 if remote_version and remote_version > VERSION then
+    -- print("Local version: " .. tostring(VERSION) .. ", Remote version: " .. tostring(remote_version))
+    print("Version is out of date. Updating...")
     local updated_script_url = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/TinyTest.lua"
     local command = "curl -s " .. updated_script_url
     local handle = io.popen(command)
