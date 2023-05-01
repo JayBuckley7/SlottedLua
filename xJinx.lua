@@ -1,12 +1,12 @@
 -- xJinx by Jay and a bit of ampx.
 
-local core = require("xCore")
-core:init()
-
 VERSION = "1.0.2"
 LUA_NAME = "xJinx.lua"
 REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
 REPO_SCRIPT_PATH = REPO_BASE_URL .. LUA_NAME
+
+local core = require("xCore")
+core:init()
 
 local function fetch_remote_version_number()
     local command = "curl -s " .. REPO_SCRIPT_PATH
@@ -41,27 +41,29 @@ local function replace_current_file_with_latest_version(latest_version_script)
     return true
 end
 
-local remote_version = fetch_remote_version_number()
+local function check_for_update()
+  local remote_version = fetch_remote_version_number()
 
-if remote_version and remote_version > VERSION then
-    local command = "curl -s " .. REPO_SCRIPT_PATH
-    local handle = io.popen(command)
-    local latest_version_script = handle:read("*a")
-    handle:close()
-
-    if latest_version_script then
-        if replace_current_file_with_latest_version(latest_version_script) then
-            print("Successfully updated " .. LUA_NAME .. " to version " .. remote_version .. ".")
-            -- You may need to restart the program to use the updated script
-        else
-            print("Failed to update " .. LUA_NAME .. ".")
-        end
-    end
-else
-    print("You are running the latest version of " .. LUA_NAME .. ".")
+  if remote_version and remote_version > VERSION then
+      local command = "curl -s " .. REPO_SCRIPT_PATH
+      local handle = io.popen(command)
+      local latest_version_script = handle:read("*a")
+      handle:close()
+  
+      if latest_version_script then
+          if replace_current_file_with_latest_version(latest_version_script) then
+              Prints("Successfully updated " .. LUA_NAME .. " to version " .. remote_version .. ".", 0)
+              -- You may need to restart the program to use the updated script
+          else
+              Prints("Failed to update " .. LUA_NAME .. ".", 0)
+          end
+      end
+  else
+      Prints("You are running the latest version of " .. LUA_NAME .. ".", 0)
+  end
 end
 
-VERSION = "1.0.1"
+
 local std_math = math
 local Idle_key = 0
 local Combo_key = 1
@@ -1037,6 +1039,9 @@ function OnTick()
 end
 
 function Refresh() Data:refresh_data() end
+
+
+check_for_update()
 
 ---@diagnostic disable-next-line: missing-parameter
 cheat.register_module(
