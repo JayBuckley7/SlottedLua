@@ -11,7 +11,7 @@ core:init()
 local function fetch_remote_version_number()
     local command = "curl -s -H 'Cache-Control: no-cache, no-store, must-revalidate' " .. Jinx_REPO_SCRIPT_PATH
     local handle = io.popen(command)
-    local content = handle:read(Jinx_VERSION"*a")
+    local content = handle:read("*a")
     handle:close()
 
     if content == "" then
