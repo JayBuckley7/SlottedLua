@@ -1,17 +1,17 @@
 -- xJinx by Jay and a bit of ampx.
 
-VERSION = "1.0.6"
-LUA_NAME = "xJinx.lua"
-REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
-REPO_SCRIPT_PATH = REPO_BASE_URL .. LUA_NAME
+Jinx_VERSION = "1.0.1"
+Jinx_LUA_NAME = "xJinx.lua"
+Jinx_REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
+Jinx_REPO_SCRIPT_PATH = Jinx_REPO_BASE_URL .. Jinx_LUA_NAME
 
 local core = require("xCore")
 core:init()
 
 local function fetch_remote_version_number()
-    local command = "curl -s -H 'Cache-Control: no-cache, no-store, must-revalidate' " .. REPO_SCRIPT_PATH
+    local command = "curl -s -H 'Cache-Control: no-cache, no-store, must-revalidate' " .. Jinx_REPO_SCRIPT_PATH
     local handle = io.popen(command)
-    local content = handle:read("*a")
+    local content = handle:read(Jinx_VERSION"*a")
     handle:close()
 
     if content == "" then
@@ -43,9 +43,9 @@ end
 
 local function check_for_update()
   local remote_version = fetch_remote_version_number()
-  Prints("local version: " .. VERSION .. " remote version: " .. remote_version, 0)
-  if remote_version and remote_version > VERSION then
-      local command = "curl -s " .. REPO_SCRIPT_PATH
+  Prints("local version: " .. Jinx_VERSION .. " remote version: " .. remote_version, 0)
+  if remote_version and remote_version > Jinx_VERSION then
+      local command = "curl -s " .. Jinx_REPO_SCRIPT_PATH
       local handle = io.popen(command)
       local latest_version_script = handle:read("*a")
       handle:close()
@@ -53,15 +53,15 @@ local function check_for_update()
       if latest_version_script then
           if replace_current_file_with_latest_version(latest_version_script) then
             Prints("Please click reload lua ", 0)
-              Prints("Successfully updated " .. LUA_NAME .. " to version " .. remote_version .. ".", 0)
+              Prints("Successfully updated " .. Jinx_LUA_NAME .. " to version " .. remote_version .. ".", 0)
               Prints("Please click reload lua  ", 0)
               -- You may need to restart the program to use the updated script
           else
-              Prints("Failed to update " .. LUA_NAME .. ".", 0)
+              Prints("Failed to update " .. Jinx_LUA_NAME .. ".", 0)
           end
       end
   else
-      Prints("You are running the latest version of " .. LUA_NAME .. ".", 0)
+      Prints("You are running the latest version of " .. Jinx_LUA_NAME .. ".", 0)
   end
 end
 
