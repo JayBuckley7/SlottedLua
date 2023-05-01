@@ -1,6 +1,6 @@
 -- xJinx by Jay and a bit of ampx.
 
-VERSION = "1.0.4"
+VERSION = "1.0.5"
 LUA_NAME = "xJinx.lua"
 REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
 REPO_SCRIPT_PATH = REPO_BASE_URL .. LUA_NAME
