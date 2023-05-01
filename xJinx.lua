@@ -1,6 +1,6 @@
 -- xJinx by Jay and a bit of ampx.
 
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 LUA_NAME = "xJinx.lua"
 REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
 REPO_SCRIPT_PATH = REPO_BASE_URL .. LUA_NAME
@@ -43,7 +43,7 @@ end
 
 local function check_for_update()
   local remote_version = fetch_remote_version_number()
-
+  Prints("local version: " .. VERSION .. " remote version: " .. remote_version, 0)
   if remote_version and remote_version > VERSION then
       local command = "curl -s " .. REPO_SCRIPT_PATH
       local handle = io.popen(command)
