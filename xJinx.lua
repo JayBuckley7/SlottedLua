@@ -1,6 +1,6 @@
 -- xJinx by Jay and a bit of ampx.
 
-VERSION = "1.0.3"
+VERSION = "1.0.4"
 LUA_NAME = "xJinx.lua"
 REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
 REPO_SCRIPT_PATH = REPO_BASE_URL .. LUA_NAME
@@ -52,7 +52,9 @@ local function check_for_update()
   
       if latest_version_script then
           if replace_current_file_with_latest_version(latest_version_script) then
+            Prints("Please click reload lua ", 0)
               Prints("Successfully updated " .. LUA_NAME .. " to version " .. remote_version .. ".", 0)
+              Prints("Please click reload lua  ", 0)
               -- You may need to restart the program to use the updated script
           else
               Prints("Failed to update " .. LUA_NAME .. ".", 0)
