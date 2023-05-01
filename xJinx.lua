@@ -1,8 +1,8 @@
 -- xJinx by Jay and a bit of ampx.
 
-Jinx_VERSION = "1.0.1"
+Jinx_VERSION = "1.0.2"
 Jinx_LUA_NAME = "xJinx.lua"
-Jinx_REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
+Jinx_REPO_BASE_URL = "https://raw.githubusercontent.com/xAIO-Slotted/xJinx/main/"
 Jinx_REPO_SCRIPT_PATH = Jinx_REPO_BASE_URL .. Jinx_LUA_NAME
 
 local core = require("xCore")
@@ -1231,14 +1231,8 @@ cheat.register_module(
     end
   })
 
-
----@diagnostic disable-next-line: undefined-field
 cheat.register_callback("render", Draw)
----@diagnostic disable-next-line: undefined-field
 cheat.register_callback("feature", Refresh)
----@diagnostic disable-next-line: undefined-field
 cheat.register_callback("feature", Splash_harass)
----@diagnostic disable-next-line: undefined-field
 cheat.register_callback("feature", SemiAutoR)
----@diagnostic disable-next-line: undefined-field
 cheat.register_callback("feature", OnTick)
