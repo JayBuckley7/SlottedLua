@@ -1,9 +1,10 @@
-VERSION = "1.0.5"
+VERSION = "1.0.6"
 LUA_NAME = "TinyTest.lua"
+REPO_BASE_URL = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/"
+REPO_SCRIPT_PATH = REPO_BASE_URL .. LUA_NAME
 
 local function fetch_remote_version_number()
-    local url = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/TinyTest.lua"
-    local command = "curl -s " .. url
+    local command = "curl -s " .. REPO_SCRIPT_PATH
     local handle = io.popen(command)
     local content = handle:read("*a")
     handle:close()
@@ -36,29 +37,25 @@ local function replace_current_file_with_latest_version(latest_version_script)
 end
 
 local remote_version = fetch_remote_version_number()
--- print both latest_version_script and remote_version
-print("Local version: " .. tostring(VERSION) .. ", Remote version: " .. tostring(remote_version))
 
 if remote_version and remote_version > VERSION then
-    -- print("Local version: " .. tostring(VERSION) .. ", Remote version: " .. tostring(remote_version))
-    print("Version is out of date. Updating...")
-    local updated_script_url = "https://raw.githubusercontent.com/JayBuckley7/SlottedLua/main/TinyTest.lua"
-    local command = "curl -s " .. updated_script_url
+    local command = "curl -s " .. REPO_SCRIPT_PATH
     local handle = io.popen(command)
     local latest_version_script = handle:read("*a")
     handle:close()
 
     if latest_version_script then
         if replace_current_file_with_latest_version(latest_version_script) then
-            print("Successfully updated TinyTest to version " .. remote_version .. ".")
+            print("Successfully updated " .. LUA_NAME .. " to version " .. remote_version .. ".")
             -- You may need to restart the program to use the updated script
         else
-            print("Failed to update TinyTest.")
+            print("Failed to update " .. LUA_NAME .. ".")
         end
     end
 else
-    print("You are running the latest version of TinyTest.")
+    print("You are running the latest version of " .. LUA_NAME .. ".")
 end
+
 
 
 
